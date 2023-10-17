@@ -1,73 +1,26 @@
 import "./App.scss";
 import { useState } from "react";
+import AddUser from "./components/AddUser";
+import UsersList from "./components/UsersList";
 
 function App() {
-	const [username, setUsername] = useState("");
-	const [age, setAge] = useState(Number(""));
-	const [allUsers, setAllUsers] = useState([]);
+	const [usersList, setUsersList] = useState([]);
 	// console.log(allUsers);
 
-	const handleSubmit = (e) => {
-		console.log("username :", username, "age :", age);
-		e.preventDefault();
-		if (username !== null && age > 0) {
-			setAllUsers((prevUsers) => [
+	const handleAddUser = (username, userAge) => {
+		setUsersList((prevUsers) => {
+			return [
 				...prevUsers,
-				{ username: username, age: age },
-			]);
-		}
-		console.log(allUsers);
-		setUsername("");
-		setAge("");
+				{ name: username, age: userAge, id: Math.random().toString() },
+			];
+		});
 	};
 
 	return (
 		<>
-			<div className="container">
-				<form action="" onSubmit={handleSubmit}>
-					<div className="input-field">
-						<label className="label" htmlFor="username">
-							Username :
-						</label>
-						<input
-							type="text"
-							id="username"
-							value={username}
-							onChange={(e) => setUsername(e.target.value)}
-							placeholder={"username"}
-						/>
-					</div>
-					<div className="input-field">
-						<label className="label" htmlFor="age">
-							Age (years) :
-						</label>
-						<input
-							type="number"
-							id="age"
-							value={age}
-							onChange={(e) => setAge(e.target.value)}
-							placeholder={"age"}
-						/>
-					</div>
-					<button type="submit" className="submit-btn">
-						Add User
-					</button>
-				</form>
-			</div>
-			{allUsers && (
-				<div className="userlist">
-					<ul>
-						{allUsers.map((user) => (
-							<li
-								key={Math.ceil(
-									Math.random() * 1000
-								)}>{`${user.username} (${user.age} years old)`}</li>
-						))}
-					</ul>
-				</div>
-			)}
+			<AddUser onAddUser={handleAddUser} />
 
-			{/* <DisplayUsers users={allUsers} /> */}
+			{handleAddUser && <UsersList users={usersList} />}
 		</>
 	);
 }

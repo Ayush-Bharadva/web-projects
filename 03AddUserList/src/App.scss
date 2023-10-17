@@ -4,16 +4,20 @@
 	box-sizing: border-box;
 }
 
-.container {
+.card {
 	background-color: white;
 	display: flex;
 	justify-content: center;
 	align-items: flex-start;
 	flex-direction: column;
-	padding: 2rem;
+	padding: 1rem;
 	width: 60%;
 	margin: 2rem auto;
 	border-radius: 1rem;
+}
+
+form {
+	width: 100%;
 }
 
 .input-field {
@@ -28,6 +32,8 @@
 	}
 
 	input {
+		// width: 90%;
+		border: none;
 		border-radius: 0.5rem;
 		padding: 0.4rem 0.8rem;
 		display: block;
@@ -42,16 +48,16 @@
 	padding: 0.6rem 1.2rem;
 	border-radius: 5px;
 	border: none;
+	background: #4f005f;
 	transition: all 0.3s ease;
 }
 .submit-btn:hover {
-	background-color: rgb(130, 130, 130);
+	background: #7e1593;
 }
 
 .userlist {
 	color: black;
 	width: 60%;
-	// margin: auto;
 	display: flex;
 	justify-content: center;
 	width: 60%;
@@ -61,16 +67,70 @@
 	align-items: flex-start;
 	flex-direction: column;
 	padding: 1rem 2rem;
+}
+ul {
+	width: 100%;
+	li {
+		background-color: rgb(223, 219, 219);
+		margin: 1rem 0;
+		font-size: 1.2rem;
+		list-style-type: none;
+		padding: 0.5rem 1.2rem;
+		border-radius: 0.5rem;
+		color: black;
+	}
+}
 
-	ul {
-		width: 100%;
-		li {
-			background-color: rgb(223, 219, 219);
-			margin: 1rem 0;
-			font-size: 1.2rem;
-			list-style-type: none;
-			padding: 0.5rem 1.2rem;
-			border-radius: 0.5rem;
+.error-model {
+	border-radius: 7px;
+	color: black;
+	background-color: #ddd;
+	position: fixed;
+	top: 30vh;
+	left: 10%;
+	width: 80%;
+	z-index: 10;
+	overflow: hidden;
+
+	.header {
+		background: #4f005f;
+		padding: 1rem;
+	}
+	.header h2 {
+		margin: 0;
+		color: white;
+	}
+	.content {
+		padding: 1rem;
+		font-size: 1rem;
+		font-weight: bold;
+	}
+	.actions {
+		display: flex;
+		justify-content: flex-end;
+		button {
+			border: none;
+			border-radius: 7px;
+			padding: 0.7rem 1.4rem;
+			margin: 1rem;
+			background: #4f005f;
 		}
+	}
+}
+
+.backdrop {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	z-index: 5;
+	background: rgba($color: #000000, $alpha: 0.75);
+}
+
+@media (min-width: 768px) {
+	.error-model {
+		left: calc(50% - 20rem);
+		width: 40rem;
 	}
 }
